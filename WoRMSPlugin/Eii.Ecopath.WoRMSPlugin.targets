@@ -1,0 +1,20 @@
+<Project>
+  <Target Name="SetWoRMSPluginBuildDestination"
+          AfterTargets="ResolveReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Update="@(ReferenceCopyLocalPaths)"
+                               Condition="'%(ReferenceCopyLocalPaths.Filename)' == 'EwEWoRMSPlugin'">
+        <DestinationSubDirectory>Plugins\WoRMSPlugin\</DestinationSubDirectory>
+      </ReferenceCopyLocalPaths>
+    </ItemGroup>
+  </Target>
+  <Target Name="SetWoRMSPluginPublishDestination"
+          AfterTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <ResolvedFileToPublish Update="@(ResolvedFileToPublish)"
+                             Condition="'%(ResolvedFileToPublish.Filename)' == 'EwEWoRMSPlugin'">
+        <RelativePath>Plugins\WoRMSPlugin\%(ResolvedFileToPublish.Filename)%(ResolvedFileToPublish.Extension)</RelativePath>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>
